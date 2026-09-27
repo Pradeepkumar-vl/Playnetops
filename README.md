@@ -58,7 +58,9 @@ The goal isn't to guess the answer — **troubleshoot the problem.**
 
 ---
 
-## ⚙️ Built With
+### 🤖 Development Note
+
+This project was designed and developed with the assistance of **AI tools**, used for coding support, debugging, and iterative development.
 
 **React · JavaScript · Vite · HTML · CSS**
 
