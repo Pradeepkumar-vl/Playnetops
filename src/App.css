@@ -1,0 +1,873 @@
+```css
+* {
+  box-sizing: border-box;
+}
+
+.game {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98)),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+  background-size: auto, 50px 50px, 50px 50px;
+  color: white;
+}
+
+/* Ambient glow */
+.game::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -250px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(34, 197, 94, 0.08);
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* Header */
+
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 25px 40px;
+  border-bottom: 1px solid rgba(71, 85, 105, 0.6);
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+.logo {
+  font-family: "Orbitron", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(34, 197, 94, 0.45);
+}
+
+.subtitle {
+  font-family: "Orbitron", sans-serif;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #64748b;
+}
+
+/* Main */
+
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Game badge */
+
+.hero-icon {
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #4ade80;
+  margin-bottom: 28px;
+  padding: 12px 24px;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 6px;
+  background: rgba(34, 197, 94, 0.06);
+  box-shadow:
+    0 0 20px rgba(34, 197, 94, 0.08),
+    inset 0 0 15px rgba(34, 197, 94, 0.03);
+}
+
+/* Heading */
+
+h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  margin: 5px 0 15px;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(34, 197, 94, 0.08);
+}
+
+/* Description */
+
+.description {
+  max-width: 620px;
+  margin: 0;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* Start button */
+
+.start-button {
+  position: relative;
+  margin-top: 35px;
+  padding: 18px 55px;
+  border: 1px solid #4ade80;
+  border-radius: 5px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  cursor: pointer;
+  background: #16a34a;
+  color: white;
+  box-shadow:
+    0 0 20px rgba(34, 197, 94, 0.25),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  background: #22c55e;
+  box-shadow:
+    0 0 25px rgba(34, 197, 94, 0.5),
+    0 0 60px rgba(34, 197, 94, 0.15);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+/* Topics */
+
+.topics {
+  display: flex;
+  gap: 10px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topics span {
+  padding: 9px 16px;
+  border: 1px solid rgba(71, 85, 105, 0.7);
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.65);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.topics span:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.05);
+}
+
+/* Footer */
+
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 18px;
+  border-top: 1px solid rgba(71, 85, 105, 0.4);
+  background: rgba(2, 6, 23, 0.55);
+  color: #475569;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .header {
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 9px;
+    letter-spacing: 4px;
+  }
+
+  .main {
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .start-button {
+    padding: 16px 35px;
+    font-size: 13px;
+  }
+}
+```
+.topology {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px 0;
+}
+
+.device {
+  width: 110px;
+  padding: 18px 10px;
+  border: 1px solid #475569;
+  background: rgba(15, 23, 42, 0.9);
+  text-align: center;
+  border-radius: 6px;
+}
+
+.device strong {
+  display: block;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  color: #4ade80;
+}
+
+.device span {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.device.warning {
+  border-color: #f59e0b;
+}
+
+.device.warning strong {
+  color: #f59e0b;
+}
+
+.connection {
+  width: 55px;
+  height: 2px;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+}
+
+.connection.broken {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.7);
+}
+```css
+/* =========================
+   INTERACTIVE DEVICES
+   ========================= */
+
+.device {
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.device:hover {
+  transform: translateY(-4px);
+  border-color: #4ade80;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.device.warning:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+/* =========================
+   DIAGNOSTIC PANEL
+   ========================= */
+
+.diagnostic-panel {
+  width: min(600px, 90%);
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #475569;
+  background: rgba(2, 6, 23, 0.9);
+  text-align: left;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+}
+
+.diagnostic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #64748b;
+}
+
+.diagnostic-header button {
+  border: none;
+  background: none;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.diagnostic-header button:hover {
+  color: #ef4444;
+}
+
+.diagnostic-panel h2 {
+  margin: 15px 0 8px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.diagnostic-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.warning-text {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #f59e0b;
+}
+
+.diagnostic-panel p {
+  margin: 12px 0 0;
+  color: #94a3b8;
+  font-size: 16px;
+}
+```
+.diagnostic-panel {
+  width: min(600px, 90%);
+  margin: 25px auto 0;
+  padding: 20px;
+  border: 1px solid #475569;
+  background: rgba(2, 6, 23, 0.95);
+  text-align: left;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.diagnostic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #64748b;
+}
+
+.diagnostic-header button {
+  border: none;
+  background: none;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.diagnostic-header button:hover {
+  color: #ef4444;
+}
+
+.diagnostic-panel h2 {
+  margin: 15px 0 10px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+}
+
+.diagnostic-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #f59e0b;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.warning-text {
+  color: #f59e0b;
+}
+
+.diagnostic-panel p {
+  margin-top: 14px;
+  color: #94a3b8;
+  font-size: 16px;
+}
+/* =========================
+   NETWORK TOPOLOGY
+   ========================= */
+
+.topology {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45px auto;
+}
+
+.network-device {
+  width: 150px;
+  min-height: 105px;
+  padding: 16px 10px;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.95);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.network-device:hover {
+  transform: translateY(-5px);
+  border-color: #4ade80;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);
+}
+
+.network-device.warning {
+  border-color: #f59e0b;
+}
+
+.network-device.warning:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+.device-icon {
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #4ade80;
+  margin-bottom: 10px;
+}
+
+.network-device.warning .device-icon {
+  color: #f59e0b;
+}
+
+.device-name {
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.device-ip {
+  margin-top: 7px;
+  color: #00ff88;
+  font-size: 12px;
+}
+.device-vlan {
+  margin-top: 7px;
+  color: #00ff88;
+  font-size: 12px;
+}
+
+.device-interface {
+  margin-top: 7px;
+  color: #00ff88;
+  font-size: 12px;
+}
+
+/* Network cables */
+
+.network-cable {
+  width: 80px;
+  height: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.network-cable::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background: #4ade80;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+}
+
+.network-cable::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  border-top: 1px solid rgba(74, 222, 128, 0.4);
+  border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+/* Broken cable */
+
+.network-cable.broken::before {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+
+.network-cable.broken::after {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.network-cable.broken span::after {
+  content: "X";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3px 7px;
+  background: #0f172a;
+  color: #ef4444;
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .topology {
+    flex-direction: column;
+  }
+
+  .network-cable {
+    width: 12px;
+    height: 55px;
+  }
+
+  .network-cable::before {
+    width: 4px;
+    height: 100%;
+  }
+
+  .network-cable::after {
+    width: 8px;
+    height: 100%;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid rgba(74, 222, 128, 0.4);
+    border-right: 1px solid rgba(74, 222, 128, 0.2);
+  }
+}
+/* =========================
+   NETWORK PACKET ANIMATION
+   ========================= */
+
+.network-cable {
+  position: relative;
+  overflow: visible;
+  background: #1e293b;
+}
+
+/* =========================
+   BROKEN LINK
+   ========================= */
+
+.network-cable.broken::before {
+  background: #ef4444;
+
+  box-shadow:
+    0 0 6px #ef4444,
+    0 0 14px rgba(239, 68, 68, 0.7);
+
+  animation: brokenPacket 2.5s linear infinite;
+}
+
+@keyframes brokenPacket {
+
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  70% {
+    left: 45%;
+    opacity: 1;
+  }
+
+  75% {
+    left: 45%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 45%;
+    opacity: 0;
+  }
+}
+.network-packet {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #4ade80;
+  box-shadow:
+    0 0 8px #4ade80,
+    0 0 18px rgba(74, 222, 128, 0.8);
+  animation: packetAcrossCable 1.4s linear forwards;
+  z-index: 5;
+}
+
+@keyframes packetAcrossCable {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+.packet-dropped {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  background: rgba(15, 23, 42, 0.95);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: dropFlash 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes dropFlash {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+.router-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.packet-dropped {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  background: rgba(15, 23, 42, 0.95);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: dropFlash 0.8s ease-in-out infinite alternate;
+}
+.mission-score {
+  margin: 25px auto;
+  padding: 20px 40px;
+  text-align: center;
+}
+
+.mission-score div {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.mission-score strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+}
+.score-hud {
+  position: fixed;
+  top: 105px;
+  right: 25px;
+  z-index: 20;
+
+  padding: 8px 16px;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.score-hud strong {
+  font-size: 20px;
+}
+/* =========================
+   MISSION SCREEN LAYOUT
+   ========================= */
+
+.main {
+  padding: 25px 20px;
+  justify-content: flex-start;
+}
+
+.header {
+  padding: 15px 30px;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.subtitle {
+  margin-top: 4px;
+}
+
+.hero-icon {
+  margin-bottom: 12px;
+  padding: 8px 18px;
+  font-size: 11px;
+}
+
+h1 {
+  margin: 3px 0 8px;
+  font-size: clamp(26px, 4vw, 38px);
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.topology {
+  margin: 25px auto 20px;
+}
+
+.diagnostic-panel {
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.diagnostic-panel h2 {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.diagnostic-panel p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.command-options {
+  margin-top: 10px;
+}
+
+.command-options p {
+  margin-bottom: 6px;
+}
+
+.start-button {
+  margin-top: 18px;
+  padding: 13px 35px;
+}
+
+footer {
+  padding: 10px;
+}
+
+.mission-success-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.72);
+  z-index: 50;
+  padding: 20px;
+}
+
+.mission-success-panel {
+  width: min(520px, 90%);
+  text-align: center;
+  padding: 35px;
+  border: 2px solid #22c55e;
+  border-radius: 18px;
+  background: #0f172a;
+  box-shadow: 0 0 35px rgba(34, 197, 94, 0.25);
+}
+
+.mission-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #22c55e;
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.mission-success-panel h1 {
+  margin: 10px 0;
+  color: #22c55e;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.mission-success-panel p {
+  color: #cbd5e1;
+}
+
+.mission-success-score {
+  margin: 22px 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #facc15;
+}
+
+.mission-success-message {
+  margin-bottom: 25px;
+}
